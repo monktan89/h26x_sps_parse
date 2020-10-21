@@ -11,6 +11,8 @@ namespace monk {
 
 int32_t H26xParseSPS::h264Parse(const uint8_t *data, uint32_t dataSize, H26xSPSInfo& info)
 {
+    if(data == nullptr || dataSize == 0) return -1;
+
     int32_t result = -1;
     h264_stream_t *h = h264_new();
     result = read_nal_unit(h, (uint8_t *)data, dataSize);
@@ -39,6 +41,8 @@ int32_t H26xParseSPS::h264Parse(const uint8_t *data, uint32_t dataSize, H26xSPSI
 
 int32_t H26xParseSPS::h265Parse(const uint8_t *data, uint32_t dataSize, H26xSPSInfo& info)
 {
+    if(data == nullptr || dataSize == 0) return -1;
+
     int32_t result = -1;
     h265_stream_t *h = h265_new();
     result = h265_read_nal_unit(h, (uint8_t *)data, dataSize);
